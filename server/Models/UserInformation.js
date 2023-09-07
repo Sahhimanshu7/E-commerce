@@ -16,33 +16,48 @@ const UserInfromationSchema = new mongoose.Schema({
         unique:true
     },
     email:{
-
+        type:email,
+        require:true,
+        min:3,
+        max:50,
+        unique:true
     },
     userID:{
-
+        type:String,
+        require:true,
+        min:3,
+        max:20,
+        unique:true
     },
     password:{
-
+        type:password,
+        require:true,
+        min:3,
+        max:20
+    },
+    country:{
+        type:String,
+        require:true,
     },
     productsBought:{
-
+        type:Array
     },
     productsWishlist:{
-
+        type:Array
     },
     pendingOrders:{
-
+        type:Array
     },
     profileImage:{
-
+        type:String
     },
     productCart:{
-
+        type:Array
     },
     reviews:{
-
+        type:Array
     }
 },
 {timestamps:true});
 
-module.exports = mongoose.model("UserInformation",UserInfromationSchema);
+module.exports = mongoose.model("UserInformation", UserInfromationSchema);

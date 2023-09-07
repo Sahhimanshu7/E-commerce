@@ -1,0 +1,67 @@
+const mongoose = require('mongoose')
+
+const SellerinformationSchema = new mongoose.Schema({
+    firstName:{
+        type:String,
+        require:true,
+        min:3,
+        max:20,
+        unique:true
+    },
+    lastName:{
+        type:String,
+        require:true,
+        min:3,
+        max:20,
+        require:true
+    },
+    companyName:{
+        type:String,
+        unique:true
+    },
+    userID:{
+        type:String,
+        require:true,
+        min:3,
+        max:20,
+        unique:true
+    },
+    password:{
+        type:password,
+        require:true,
+        min:3,
+        max:20
+    },
+    companyEmail:{
+        type:email,
+        require:true,
+        min:3,
+        max:50,
+        unique:true
+    },
+    country:{
+        type:String,
+        require:true
+    },
+    description:{
+        type:String,
+        require:true,
+        max:160
+    },
+    productsSold:{
+        type:Array
+    },
+    productsListed:{
+        type:Array
+    },
+    newOrders:{
+        type:Array
+    },
+    pendingOrders:{
+        type:Array
+    },
+    profileImage:{}
+},
+{timestamps:true});
+
+module.exports = mongoose.model("SellerInformation", SellerinformationSchema);
