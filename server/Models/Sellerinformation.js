@@ -27,13 +27,13 @@ const SellerinformationSchema = new mongoose.Schema({
         unique:true
     },
     password:{
-        type:password,
+        type:String,
         require:true,
         min:3,
         max:20
     },
     companyEmail:{
-        type:email,
+        type:String,
         require:true,
         min:3,
         max:50,

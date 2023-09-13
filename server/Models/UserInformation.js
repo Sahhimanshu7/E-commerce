@@ -16,7 +16,7 @@ const UserInfromationSchema = new mongoose.Schema({
         unique:true
     },
     email:{
-        type:email,
+        type:String,
         require:true,
         min:3,
         max:50,
@@ -30,7 +30,7 @@ const UserInfromationSchema = new mongoose.Schema({
         unique:true
     },
     password:{
-        type:password,
+        type:String,
         require:true,
         min:3,
         max:20

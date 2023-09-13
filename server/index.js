@@ -7,6 +7,7 @@ const cors = require("cors");
 const express = require("express");
 const dotenv = require("dotenv");
 const mongoose = require('mongoose');
+const userAuth = require("./Routes/userAuth");
 
 const PORT = process.env.PORT || 8080;
 const app = express();
@@ -23,6 +24,9 @@ then(()=>{
 
 //middleware
 app.use(express.json());
+
+//User middleware
+app.use('/api/auth', userAuth);
 
 app.listen(PORT,() => {
     console.log(`E-commerce site listening on ${PORT}`);
