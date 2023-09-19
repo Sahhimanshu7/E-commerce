@@ -1,4 +1,4 @@
-const express =  requires('express');
+const express =  require('express');
 const router = express.Router();
 const Seller = require("../Models/Sellerinformation");
 const bcrypt = require('bcrypt');
