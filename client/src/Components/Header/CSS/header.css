@@ -59,7 +59,7 @@ h1{
     font-style: normal;
     font-weight: 400;
     line-height: normal;
-    width: 240%;
+    width: auto;
 }
 .search-box input:focus{
     outline: none;
