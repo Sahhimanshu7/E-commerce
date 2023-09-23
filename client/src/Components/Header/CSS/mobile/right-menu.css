@@ -9,4 +9,39 @@
         outline: none;
         border: none;
     }
+    .right-menu{
+        display: none;
+    }
+    .right-menu-phone{
+        display:grid;
+        position: absolute;
+        top: 30%;
+        left: 40%;
+
+    }
+    .phone-search{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        width:90%;
+        height: 38px;
+        flex-shrink: 0;
+
+        border-radius: 20px;
+        background: #FFF;
+
+        position: absolute;
+        top: 15%;
+        left: 20px;
+    }
+    .phone-menu{
+        background-color: black;
+        opacity: 0.7;
+        position: absolute;
+        top: 0px;
+        right: 0px;
+        left: 0px;
+        height: 100vh;
+    }
 }
