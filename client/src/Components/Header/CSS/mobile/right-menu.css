@@ -1,8 +1,12 @@
 @media only screen and (max-device-width: 880px) {
     .mobile-menu-buttons{
             display: flex;
+            padding: 10px;
+            color: #161B40;
     }
-    .cross-button{
-        display: none;
+    .menu-button{
+        background: none;
+        outline: none;
+        border: none;
     }
 }
