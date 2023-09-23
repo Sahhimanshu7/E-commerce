@@ -16,7 +16,7 @@ function Header(){
         setIsMenuClicked(!isMenuClicked);
     }
     return(
-        <>
+        <div className='top-header'>
         <div className = "header">
             <div className = "header-logo">
                 <h1>E-Commerce.com</h1>
@@ -33,7 +33,15 @@ function Header(){
                     </button>
                 </div>
             </div>
-            <div className = "mobile-menu-buttons">
+            
+            <div className = "right-menu">
+                <Wishlist />
+                <SignIn />
+                <Cart />
+            </div>
+        </div>
+        <div className='phone'>
+        <div className = "mobile-menu-buttons">
             <button className = "menu-button" onClick={toogleDisplay}>
                 {isMenuButtonDisplayed ? 
                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
@@ -47,13 +55,6 @@ function Header(){
                 }
             </button>
             </div>
-            <div className = "right-menu">
-                <Wishlist />
-                <SignIn />
-                <Cart />
-            </div>
-        </div>
-        <div className='phone'>
             {isMenuClicked ? 
             <div className='phone-menu'>
                 <div className = "phone-search">
@@ -78,7 +79,7 @@ function Header(){
             ''
         }
         </div>
-        </>
+        </div>
     )
 }
 
