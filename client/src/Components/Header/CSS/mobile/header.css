@@ -1,0 +1,16 @@
+@media only screen and (max-device-width: 880px) {
+    .header{
+       background-color: #43BEE5;
+    }
+
+    /* search starts here  */
+    .search{
+        display: none;
+    }
+    /* search ends here  */
+    .right-menu{
+        display:none;
+    }
+    
+}
+

@@ -22,6 +22,7 @@
     font-style: normal;
     font-weight: 400;
     line-height: normal;
+    padding:2px;
 }
 /* Wishlist end here */
 /* siginin starts here */
@@ -76,4 +77,9 @@
     font-weight: 400;
     line-height: normal;
     padding-top: 5px;
+}
+/* cart ends here  */
+
+.mobile-menu-buttons{
+    display: none;
 }

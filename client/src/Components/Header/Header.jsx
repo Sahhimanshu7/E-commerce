@@ -1,10 +1,18 @@
+import {useState} from 'react';
 import Cart from "./Cart";
 import SignIn from "./SignIn";
 import Wishlist from "./Wishlist";
 import "./CSS/header.css";
+import "./CSS/mobile/header.css";
 import "./CSS/right-menu.css";
+import "./CSS/mobile/right-menu.css";
 
 function Header(){
+    const [isMenuButtonDisplayed, setIsMenuButtonDisplayed] = useState(false);
+    
+    const toogleDisplay = () => {
+        setIsMenuButtonDisplayed(!isMenuButtonDisplayed);
+    }
     return(
         <div className = "header">
             <div className = "header-logo">
@@ -21,6 +29,20 @@ function Header(){
                         </svg>
                     </button>
                 </div>
+            </div>
+            <div className = "mobile-menu-buttons">
+            <button className = "menu-button" onClick={toogleDisplay}>
+                {isMenuButtonDisplayed ? 
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
+                    <path d="M6.66675 6.66666L16.0001 16L25.3334 6.66666" stroke="#161B40" stroke-width="2.66667" stroke-linecap="round"/>
+                    <path d="M6.66675 25.3333L16.0001 16L25.3334 25.3333" stroke="#161B40" stroke-width="2.66667" stroke-linecap="round"/>
+                </svg>
+                :
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
+                    <path d="M26.6666 9.33333H5.33325M26.6666 16H5.33325M26.6666 22.6667H5.33325" stroke="#161B40" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+                }
+            </button>
             </div>
             <div className = "right-menu">
                 <Wishlist />

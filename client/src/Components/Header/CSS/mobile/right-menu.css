@@ -1,0 +1,8 @@
+@media only screen and (max-device-width: 880px) {
+    .mobile-menu-buttons{
+            display: flex;
+    }
+    .cross-button{
+        display: none;
+    }
+}
