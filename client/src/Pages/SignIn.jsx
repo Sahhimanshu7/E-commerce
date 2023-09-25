@@ -29,6 +29,7 @@ const SigIn = () => {
             <div className="right-side">
                 {showLoginSignUp ? 
                 <div className='login-signup'>
+                    <h4>Already have an account ? </h4>
                     <button onClick={loginClicked}>
                         Login
                     </button>
@@ -41,7 +42,9 @@ const SigIn = () => {
                 }
                 <div className='login-user-seller'>
                     {isLogin ? 
+                    <>
                     <Login />
+                    </>
                 :
                 " "
                 }
@@ -65,3 +68,4 @@ const SigIn = () => {
 };
 
 export default SigIn;
+
