@@ -1,13 +1,13 @@
 import './App.css';
-import Header from './Components/Header/Header';
 import { Routes, Route } from "react-router-dom";
-import SigIn from './Components/SignIn/SignIn';
+import SigIn from './Pages/SignIn';
+import HomePage from '../src/Pages/HomePage'
 
 function App() {
   return (
     <div className="App">
-      <Header />
         <Routes> 
+          <Route path='/' element={<HomePage />}/>
           <Route path = '/signin' element={<SigIn />}/>
         </Routes>   
       
