@@ -1,6 +1,13 @@
 const SigIn = () => {
     return(
-        <p>SignIn</p>
+        <div className="main-box">
+            <div className="left-side">
+                <h1>Welcome to E-commerce auth</h1>
+            </div>
+            <div className="right-side">
+                <button></button>
+            </div>
+        </div>
     )
 };
 
