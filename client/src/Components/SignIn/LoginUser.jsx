@@ -1,6 +1,8 @@
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 const LoginUser = () =>{
+    const navigate = useNavigate();
     const {register,handleSubmit} = useForm();
     const onSubmit = (e) =>{
 
@@ -13,12 +15,14 @@ const LoginUser = () =>{
             password : password
         })
         .then((response) => {
-            console.log(response);
+            navigate('/');
         }).catch(e => {
             console.log(e);
-        })
+        });
+       
 
     }
+    
     return(
         <div className="login-user-form">
             <div className="form-header">
@@ -26,9 +30,9 @@ const LoginUser = () =>{
             </div>
             <form onSubmit={handleSubmit(onSubmit)} className="form">
                 <input {...register("userID",
-                { required:"Please enter your user id"})} className="enter"/>
+                { required:"Please enter your user id"})} className="enter" placeholder ="Username......."/>
                 <input {...register("password",
-                {required:"Please enter your password."})} type="password" className="enter"/>
+                {required:"Please enter your password."})} type="password" className="enter" placeholder="Password........"/>
                 <input type="submit" value="Login" className="submit"/>
             </form>
         </div>
