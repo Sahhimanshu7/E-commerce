@@ -1,9 +1,23 @@
 import { useForm } from "react-hook-form";
-
+import axios from 'axios';
 const LoginUser = () =>{
     const {register,handleSubmit} = useForm();
-    const onSubmit = (d) =>{
-        alert(JSON.stringify(d));
+    const onSubmit = (e) =>{
+
+        // Make a post request to the /api/auth/login/user
+        const userID = e.userID;
+        const password = e.password;
+
+        axios.post("/api/auth/login/user", {
+            userID : userID,
+            password : password
+        })
+        .then((response) => {
+            console.log(response);
+        }).catch(e => {
+            console.log(e);
+        })
+
     }
     return(
         <div className="login-user-form">

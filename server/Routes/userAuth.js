@@ -34,18 +34,14 @@ router.post('/signup/user', async(req,res)=> {
 // Using email or userID
 router.post('/login/user',async(req,res)=>{
     try {
-        if (req.body.userID) {
-            const user = UserInformation.findOne({userID:req.body.userID});
-        } else if(req.body.email){
-            const user = UserInformation.findOne({email:req.body.email});
-        }
-
+        const user = await UserInformation.findOne({userID:req.body.userID});
+       
         if (user) {
             const validPassword = await bcrypt.compare(req.body.password, user.password);
             if(validPassword){
                 res.status(200).json(user);
             }else{
-                res.status(400).json("Wronf Password")
+                res.status(400).json("Wrong Password")
             }
         } else {
             res.status(400).json("Username not found");
