@@ -2,6 +2,11 @@ import { Link } from "react-router-dom";
 
 function SignIn(){
     return(
+        <>
+        {localStorage.getItem("isUserLoggedIn") ? 
+
+        localStorage.getItem("loggedInUserName")
+        :
         <Link to = '/signin'>
             <button className = "sign-in-button">
                 <div className = "sign-in">
@@ -16,6 +21,8 @@ function SignIn(){
                 </div>
             </button> 
         </Link>
+    }
+        </>
     )
 }
 

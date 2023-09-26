@@ -1,9 +1,11 @@
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
+
 const LoginUser = () =>{
     const navigate = useNavigate();
     const {register,handleSubmit} = useForm();
+
     const onSubmit = (e) =>{
 
         // Make a post request to the /api/auth/login/user
@@ -15,6 +17,11 @@ const LoginUser = () =>{
             password : password
         })
         .then((response) => {
+            console.log(response.data);
+            localStorage.setItem('loggedInUserName', response.data.firstName);
+            localStorage.setItem('loggedInUserCountry',response.data.country);
+            localStorage.setItem('isUserLoggedIn', true);
+            localStorage.setItem('loggedInUserID',response.data.userID);
             navigate('/');
         }).catch(e => {
             console.log(e);
