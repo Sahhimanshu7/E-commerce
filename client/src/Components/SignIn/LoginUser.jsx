@@ -22,6 +22,7 @@ const LoginUser = () =>{
             localStorage.setItem('loggedInUserCountry',response.data.country);
             localStorage.setItem('isUserLoggedIn', true);
             localStorage.setItem('loggedInUserID',response.data.userID);
+            localStorage.setItem('loggedInUser_id',response.data._id);
             navigate('/');
         }).catch(e => {
             console.log(e);
