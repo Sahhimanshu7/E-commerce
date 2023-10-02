@@ -1,11 +1,37 @@
 import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import axios from "axios";
 
 function SignIn(){
+    
+    const [loggedIn, setLoggedIn] = useState(localStorage.getItem("isUserLoggedIn"));
+    if(loggedIn){
+       
+
+        
+        
+
+    } 
+    
+    // getting user image and data
+    const handleClick = async(e) =>{
+        e.preventDefault();
+        const userID = localStorage.getItem("loggedInUser_id");
+        const response  = await axios.get(`/api/user/images/profileImage/${userID}`);
+        localStorage.setItem("profileImage", response.data.profileImage);
+        console.log(response.data.profileImage);
+        console.log(localStorage.getItem("profileImage"));
+        
+    }
     return(
         <>
-        {localStorage.getItem("isUserLoggedIn") ? 
-
-        localStorage.getItem("loggedInUserName")
+        { loggedIn  ? 
+    <>
+        <button onClick={handleClick}>
+            show Image
+        </button>
+        
+        </>
         :
         <Link to = '/signin'>
             <button className = "sign-in-button">
@@ -22,6 +48,7 @@ function SignIn(){
             </button> 
         </Link>
     }
+    <img src="E-commerce/server/uploads/profileImages/1696264132640-back.JPG" alt="not found"/>
         </>
     )
 }

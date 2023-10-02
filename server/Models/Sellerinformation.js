@@ -49,18 +49,25 @@ const SellerinformationSchema = new mongoose.Schema({
         max:160
     },
     productsSold:{
-        type:Array
+        type:Array,
+        default:[]
     },
     productsListed:{
-        type:Array
+        type:Array,
+        default:[]
     },
     newOrders:{
-        type:Array
+        type:Array,
+        default:[]
     },
     pendingOrders:{
-        type:Array
+        type:Array,
+        default:[]
     },
-    profileImage:{}
+    profileImage:{
+        type:String,
+        default:null
+    }
 },
 {timestamps:true});
 

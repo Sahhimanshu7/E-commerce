@@ -99,6 +99,19 @@ router.put('/profileImage/:id', upload.single('file'), async(req, res) => {
         res.status(500).json({ message: 'Internal Server Error' });
       }
 });
+// getting profileImage
+router.get('/profileImage/:id',async(req,res) =>{
+    try {
+        const userID = req.params.id;
+        console.log(userID);
+        const response = await UserInformation.findById(userID);
+        console.log("HEllo");
+        console.log(response);
+        res.status(200).json(response);
+    }catch(error){
+        res.status(500).json(error);
+    }
+} );
 
 
 module.exports = router;

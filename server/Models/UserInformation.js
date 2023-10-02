@@ -40,22 +40,28 @@ const UserInfromationSchema = new mongoose.Schema({
         require:true,
     },
     productsBought:{
-        type:Array
+        type:Array,
+        default:[]
     },
     productsWishlist:{
-        type:Array
+        type:Array,
+        default:[]
     },
     pendingOrders:{
-        type:Array
+        type:Array,
+        default:[]
     },
     profileImage:{
-        type:String
+        type:String,
+        default:null
     },
     productCart:{
-        type:Array
+        type:Array,
+        default:[]
     },
     reviews:{
-        type:Array
+        type:Array,
+        default:[]
     }
 },
 {timestamps:true});
