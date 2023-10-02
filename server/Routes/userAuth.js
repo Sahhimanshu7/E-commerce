@@ -2,6 +2,19 @@ const express = require('express');
 const router = express.Router();
 const UserInformation = require("../Models/UserInformation");
 const bcrypt = require('bcrypt');
+const multer = require('multer');
+const path = require('path');
+
+//Defining the storage for images
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, path.join(__dirname,'../uploads/profileImages/')); // Define where to store the uploaded images.
+    },
+    filename: function (req, file, cb) {
+        cb(null, Date.now() + '-' + file.originalname); // Set the filename.
+    },
+});
+const upload = multer({ storage });
 
 // Register new user
 router.post('/signup/user', async(req,res)=> {
@@ -50,5 +63,42 @@ router.post('/login/user',async(req,res)=>{
         res.status(500).json(error);
     }
 });
+//uploading profileImage
+router.post('/profileImage/:id', upload.single('file'), async(req, res) => {
+    if (!req.file) {
+      return res.status(400).json({ message: 'No file uploaded' });
+    }
+    try {
+        const userID = req.params.id;
+        const updatedImage = JSON.stringify(req.file.path) ;
+        console.log(updatedImage);
+    
+        await UserInformation.findByIdAndUpdate(userID,{profileImage:updatedImage});
+        // Update the image in the database
+    
+        res.json({ message: 'Image uploaded successfully' });
+      } catch (error) {
+        console.error('Error uploading image:', error);
+        res.status(500).json({ message: 'Internal Server Error' });
+      }
+    
+});
+
+//updating profileImage
+router.put('/profileImage/:id', upload.single('file'), async(req, res) => {
+    try {
+        const userID = req.params.id;
+        const updatedImage = req.file;
+    
+        UserInformation.findByIdAndUpdate(userID,{profileImage:updatedImage});
+        // Update the image in the database
+    
+        res.json({ message: 'Image updated successfully' });
+      } catch (error) {
+        console.error('Error updating image:', error);
+        res.status(500).json({ message: 'Internal Server Error' });
+      }
+});
+
 
 module.exports = router;

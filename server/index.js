@@ -14,8 +14,10 @@ const PORT = process.env.PORT || 8080;
 const app = express();
 
 dotenv.config();
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended:true }));
+var bodyParser = require('body-parser');
+app.use(bodyParser.json({limit: '50mb'}));
+app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
+
 
 // Establish and confirm mongoose connection 
 mongoose.connect(process.env.ATLAS_URI,{useNewUrlParser:true,useUnifiedTopology:true}). 
@@ -30,6 +32,7 @@ app.use(express.json());
 
 //User middleware
 app.use('/api/auth/', userAuth);
+app.use('/api/user/images/',userAuth);
 
 //Seller middleware
 app.use('/api/auth/', sellerAuth);
