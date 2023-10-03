@@ -1,10 +1,8 @@
-const express =  require('express');
-const router = express.Router();
 const Seller = require("../Models/Sellerinformation");
 const bcrypt = require('bcrypt');
 
-// register new seller
-router.post('/signup/seller', async(req,res)=>{
+// Register new seller
+const registerSeller = async(req,res) =>{
     try {
         const salt = await bcrypt.genSalt(10);
         const hashedPassword = await bcrypt.hash(req.body.password,salt);
@@ -17,7 +15,7 @@ router.post('/signup/seller', async(req,res)=>{
             password:hashedPassword,
             companyEmail:req.body.companyEmail,
             country:req.body.country,
-            description:rew.body.description,
+            description:req.body.description,
             productsListed:req.body.productsListed,
             productsSold:req.body.productsSold,
             newOrders:req.body.newOrders,
@@ -29,18 +27,12 @@ router.post('/signup/seller', async(req,res)=>{
     } catch (error) {
         res.status(500).json(error);
     }
-});
+}
 
-// Login for seller 
-// Using email or userID
-router.post('/login/seller',async(req,res)=>{
+// Login a seller
+const loginSeller = async(req,res) =>{
     try {
-        if (req.body.userID) {
-            const seller = UserInformation.findOne({userID:req.body.userID});
-        } else if(req.body.email){
-            const seller = UserInformation.findOne({email:req.body.email});
-        }
-
+        const seller = UserInformation.findOne({userID:req.body.userID});
         if (seller) {
             const validPassword = await bcrypt.compare(req.body.password, seller.password);
             if(validPassword){
@@ -54,6 +46,6 @@ router.post('/login/seller',async(req,res)=>{
     } catch (error) {
         res.status(500).json(error);
     }
-});
+}
 
-module.exports = router;
+module.exports = { registerSeller, loginSeller };

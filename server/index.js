@@ -2,13 +2,14 @@
 
 //          Server Starts Here
 
+//     Copyright @ Himanshu Sah 2023
+
 // 
-const cors = require("cors");
 const express = require("express");
 const dotenv = require("dotenv");
 const mongoose = require('mongoose');
-const userAuth = require("./Routes/userAuth");
-const sellerAuth = require("./Routes/sellerAuth");
+const userController = require('./Controllers/userController')
+const sellerController = require('./Controllers/sellerController')
 
 const PORT = process.env.PORT || 8080;
 const app = express();
@@ -31,11 +32,11 @@ then(()=>{
 app.use(express.json());
 
 //User middleware
-app.use('/api/auth/', userAuth);
-app.use('/api/user/images/',userAuth);
+app.use('/api/auth/', userController);
+app.use('/api/user/images/',userController);
 
 //Seller middleware
-app.use('/api/auth/', sellerAuth);
+app.use('/api/auth/', sellerController);
 
 app.listen(PORT,() => {
     console.log(`E-commerce site listening on ${PORT}`);
