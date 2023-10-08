@@ -15,7 +15,7 @@ const Upload = async(req,res) =>{
           //finding the user using user ID stored in localStorage
           await UserInformation.findByIdAndUpdate(userID,{profileImage:updatedImage});
           // Upload the image in the database
-          res.json({ message: 'Image uploaded successfully' });
+          res.json({ message: 'Image uploaded successfully!' });
         } catch (error) {
           res.status(500).json({ message: 'Internal Server Error' });
         }  
@@ -139,7 +139,7 @@ const deleteProductsWishlist = async(req,res) =>{
     const userID = req.params.id;
     const productWishlistID = req.body.productWishlistID;
     try {
-        await UserInformation.findByIdAndDelete(userID,{$pull:{productsWishlist: productWishlistID}});
+        await UserInformation.findByIdAndUpdate(userID,{$pull:{productsWishlist: productWishlistID}});
         res.status(200).json(`Wishlist with id : ${productWishlistID} removed!`);
     } catch (error) {
         res.status(500).json(error);
@@ -162,7 +162,7 @@ const deletePendingOrders = async(req,res) =>{
     const userID = req.params.id;
     const productPendingID = req.body.productPendingID;
     try {
-        await UserInformation.findByIdAndDelete(userID,{$pull:{pendingOrders: productPendingID}});
+        await UserInformation.findByIdAndUpdate(userID,{$pull:{pendingOrders: productPendingID}});
         res.status(200).json(`Product with id : ${productPendingID} removed!`);
     } catch (error) {
         res.status(500).json(error);
@@ -184,7 +184,7 @@ const deleteProductsCart = async(req,res) =>{
     const userID = req.params.id;
     const productCartID = req.body.productCartID;
     try {
-        await UserInformation.findByIdAndDelete(userID,{$pull:{productCart: productCartID}});
+        await UserInformation.findByIdAndUpdate(userID,{$pull:{productCart: productCartID}});
         res.status(200).json(`Product with id : ${productCartID} removed from cart!`);
     } catch (error) {
         res.status(500).json(error);
@@ -207,7 +207,7 @@ const deleteProductsReview = async(req,res) =>{
     const userID = req.params.id;
     const productReviewID = req.body.productReviewID;
     try {
-        await UserInformation.findByIdAndDelete(userID,{$pull:{reviews: productReviewID}});
+        await UserInformation.findByIdAndUpdate(userID,{$pull:{reviews: productReviewID}});
         res.status(200).json(`Review with id : ${productCartID} removed!`);
     } catch (error) {
         res.status(500).json(error);
