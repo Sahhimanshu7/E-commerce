@@ -25,6 +25,11 @@ router.post('/login/user', function(req,res){
     userServices.userLogin(req,res);
 });
 
+//updating username
+router.put('/updateName/user/:id', function(req,res){
+    userServices.updateName(req,res);
+})
+
 //uploading profileImage
 router.post('/profileImage/:id', upload.single('file'), function(req,res){
     userServices.Upload(req,res);
@@ -39,5 +44,31 @@ router.put('/profileImage/:id', upload.single('file'), function(req,res){
 router.get('/profileImage/:id', function(req,res){
     userServices.getProfileImage(req,res);
 });
+
+// updating products bought list 
+router.put('/updateProductsBought/user/:id', function(req,res){
+    userServices.updateProductsBought(req,res);
+});
+
+// updating products wishlist
+router.put('/updateProductsWishlist/user/:id', function(req,res){
+    userServices.updateProductsWishlist(req,res);
+});
+
+// updating products pending
+router.put('/updateProductsPending/user/:id', function(req,res){
+    userServices.updateProductsPending(req,res);
+});
+
+// updating products cart
+router.put('/updateProductsCart/user/:id', function(req,res){
+    userServices.updateProductsCart(req,res);
+});
+
+// updating reviews given to
+router.put('/updateProductsReview/user/:id', function(req,res){
+    userServices.updateProductsReview(req,res);
+});
+
 
 module.exports = router;

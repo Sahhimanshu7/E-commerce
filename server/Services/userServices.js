@@ -96,4 +96,85 @@ const userLogin = async(req, res) =>{
     }
 }
 
-module.exports = { Upload, Update, registerUser, userLogin, getProfileImage };
+// updating user name
+const updateName = async(req,res) =>{
+    const userID = req.params.id;
+    const firstName = req.body.firstName;
+    const lastName = req.body.lastName;
+    try {
+        await UserInformation.findByIdAndUpdate(userID,{firstName:firstName});
+        await UserInformation.findByIdAndUpdate(userID,{lastName:lastName});
+        res.status(200).json("User Name updated!");
+    } catch (error) {
+        res.status(500).json(error);
+    }
+}
+
+// updating products bought list
+const updateProductsBought = async(req,res) =>{
+    const userID = req.params.id;
+    const productBoughtID = req.body.productBoughtID;
+    try {
+        await UserInformation.findByIdAndUpdate(userID,{$push:{productsBought : productBoughtID}});
+        res.status(200).json(`Product with id : ${productBoughtID} added!`);
+    } catch (error) {
+        res.status(500).json(error);
+    }
+}
+
+// updating products wishlist
+const updateProductsWishlist = async(req,res) =>{
+    const userID = req.params.id;
+    const productWishlistID = req.body.productWishlistID;
+    try {
+        await UserInformation.findByIdAndUpdate(userID,{$push:{productsWishlist: productWishlistID}});
+        res.status(200).json(`Wishlist with id : ${productWishlistID} added!`);
+    } catch (error) {
+        res.status(500).json(error);
+    }
+}
+// updating pending orders
+const updateProductsPending = async(req,res) =>{
+    const userID = req.params.id;
+    const productPendingID = req.body.productPendingID;
+    try {
+        await UserInformation.findByIdAndUpdate(userID,{$push:{pendingOrders : productPendingID}});
+        res.status(200).json(`Product with id : ${productPendingID} added!`);
+    } catch (error) {
+        res.status(500).json(error);
+    }
+}
+// updating product cart
+const updateProductsCart = async(req,res) =>{
+    const userID = req.params.id;
+    const productCartID = req.body.productCartID;
+    try {
+        await UserInformation.findByIdAndUpdate(userID,{$push:{productCart : productCartID}});
+        res.status(200).json(`Product with id : ${productCartID} added!`);
+    } catch (error) {
+        res.status(500).json(error);
+    }
+}
+// updating reviews of products
+const updateProductsReview = async(req,res) =>{
+    const userID = req.params.id;
+    const productReviewID = req.body.productReviewID;
+    try {
+        await UserInformation.findByIdAndUpdate(userID,{$push:{reviews : productReviewID}});
+        res.status(200).json(`Review with id : ${productReviewID} added!`);
+    } catch (error) {
+        res.status(500).json(error);
+    }
+}
+
+module.exports = { Upload, 
+                Update, 
+                registerUser, 
+                userLogin, 
+                getProfileImage, 
+                updateName, 
+                updateProductsBought,
+                updateProductsWishlist,
+                updateProductsCart,
+                updateProductsPending,
+                updateProductsReview };

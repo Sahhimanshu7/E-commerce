@@ -34,6 +34,7 @@ app.use(express.json());
 //User middleware
 app.use('/api/auth/', userController);
 app.use('/api/user/images/',userController);
+app.use('/api/services/user',userController);
 
 //Seller middleware
 app.use('/api/auth/', sellerController);
