@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const multer = require('multer');
 const path = require('path');
-import { Upload, Update, registerUser, userLogin, getProfileImage } from '../Services/userServices';
+var userServices = require('../Services/userServices');
 
 //Defining the storage for images
 const storage = multer.diskStorage({
@@ -16,19 +16,28 @@ const storage = multer.diskStorage({
 const upload = multer({ storage });
 
 // Register new user
-router.post('/signup/user', registerUser);
+router.post('/signup/user', function(req,res) {
+    userServices.registerUser(req,res);
+});
 
 // Login for user 
-router.post('/login/user', userLogin);
+router.post('/login/user', function(req,res){
+    userServices.userLogin(req,res);
+});
 
 //uploading profileImage
-router.post('/profileImage/:id', upload.single('file'), Upload);
+router.post('/profileImage/:id', upload.single('file'), function(req,res){
+    userServices.Upload(req,res);
+});
 
 //updating profileImage
-router.put('/profileImage/:id', upload.single('file'), Update);
+router.put('/profileImage/:id', upload.single('file'), function(req,res){
+    userServices.Update(req,res);
+});
 
 // getting profileImage
-router.get('/profileImage/:id', getProfileImage);
+router.get('/profileImage/:id', function(req,res){
+    userServices.getProfileImage(req,res);
+});
 
 module.exports = router;
-

@@ -86,7 +86,7 @@ const userLogin = async(req, res) =>{
             if(validPassword){
                 res.status(200).json(user);
             }else{
-                res.status(400).json("Wrong Password")
+                res.status(400).json("Wrong Password");
             }
         } else {
             res.status(400).json("Username not found");
@@ -96,4 +96,4 @@ const userLogin = async(req, res) =>{
     }
 }
 
-module.exports = {Upload, Update, registerUser, userLogin, getProfileImage};
+module.exports = { Upload, Update, registerUser, userLogin, getProfileImage };
