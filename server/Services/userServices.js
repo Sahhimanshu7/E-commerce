@@ -133,6 +133,19 @@ const updateProductsWishlist = async(req,res) =>{
         res.status(500).json(error);
     }
 }
+
+// deleting products wishlist
+const deleteProductsWishlist = async(req,res) =>{
+    const userID = req.params.id;
+    const productWishlistID = req.body.productWishlistID;
+    try {
+        await UserInformation.findByIdAndDelete(userID,{$pull:{productsWishlist: productWishlistID}});
+        res.status(200).json(`Wishlist with id : ${productWishlistID} removed!`);
+    } catch (error) {
+        res.status(500).json(error);
+    }
+}
+
 // updating pending orders
 const updateProductsPending = async(req,res) =>{
     const userID = req.params.id;
@@ -140,6 +153,17 @@ const updateProductsPending = async(req,res) =>{
     try {
         await UserInformation.findByIdAndUpdate(userID,{$push:{pendingOrders : productPendingID}});
         res.status(200).json(`Product with id : ${productPendingID} added!`);
+    } catch (error) {
+        res.status(500).json(error);
+    }
+}
+// removing pending orders
+const deletePendingOrders = async(req,res) =>{
+    const userID = req.params.id;
+    const productPendingID = req.body.productPendingID;
+    try {
+        await UserInformation.findByIdAndDelete(userID,{$pull:{pendingOrders: productPendingID}});
+        res.status(200).json(`Product with id : ${productPendingID} removed!`);
     } catch (error) {
         res.status(500).json(error);
     }
@@ -155,6 +179,18 @@ const updateProductsCart = async(req,res) =>{
         res.status(500).json(error);
     }
 }
+// delete products cart
+const deleteProductsCart = async(req,res) =>{
+    const userID = req.params.id;
+    const productCartID = req.body.productCartID;
+    try {
+        await UserInformation.findByIdAndDelete(userID,{$pull:{productCart: productCartID}});
+        res.status(200).json(`Product with id : ${productCartID} removed from cart!`);
+    } catch (error) {
+        res.status(500).json(error);
+    }
+}
+
 // updating reviews of products
 const updateProductsReview = async(req,res) =>{
     const userID = req.params.id;
@@ -162,6 +198,17 @@ const updateProductsReview = async(req,res) =>{
     try {
         await UserInformation.findByIdAndUpdate(userID,{$push:{reviews : productReviewID}});
         res.status(200).json(`Review with id : ${productReviewID} added!`);
+    } catch (error) {
+        res.status(500).json(error);
+    }
+}
+// reviews delete
+const deleteProductsReview = async(req,res) =>{
+    const userID = req.params.id;
+    const productReviewID = req.body.productReviewID;
+    try {
+        await UserInformation.findByIdAndDelete(userID,{$pull:{reviews: productReviewID}});
+        res.status(200).json(`Review with id : ${productCartID} removed!`);
     } catch (error) {
         res.status(500).json(error);
     }
@@ -177,4 +224,8 @@ module.exports = { Upload,
                 updateProductsWishlist,
                 updateProductsCart,
                 updateProductsPending,
-                updateProductsReview };
+                updateProductsReview,
+                deleteProductsWishlist,
+                deletePendingOrders,
+                deleteProductsCart,
+                deleteProductsReview };

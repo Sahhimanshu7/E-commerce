@@ -54,21 +54,36 @@ router.put('/updateProductsBought/user/:id', function(req,res){
 router.put('/updateProductsWishlist/user/:id', function(req,res){
     userServices.updateProductsWishlist(req,res);
 });
+// deleting prducts wishlist
+router.delete('/deleteProductsWishlist/user/:id', function(req,res){
+    userServices.deleteProductsWishlist(req,res);
+})
 
 // updating products pending
 router.put('/updateProductsPending/user/:id', function(req,res){
     userServices.updateProductsPending(req,res);
 });
+// delete products pending
+router.delete('/deletePendingOrders/user/:id', function(req,res){
+    userServices.deletePendingOrders(req,res);
+})
 
 // updating products cart
 router.put('/updateProductsCart/user/:id', function(req,res){
     userServices.updateProductsCart(req,res);
 });
+// deleteing products cart product
+router.delete('/deleteProductsCart/user/:id', function(req,res){
+    userServices.deleteProductsCart(req,res);
+})
 
 // updating reviews given to
 router.put('/updateProductsReview/user/:id', function(req,res){
     userServices.updateProductsReview(req,res);
 });
-
+// delete Review
+router.delete('/deleteProductsReview/user/:id', function(req,res){
+    userServices.deleteProductsReview(req,res);
+})
 
 module.exports = router;
