@@ -3,6 +3,7 @@ const router = express.Router();
 const multer = require('multer');
 const path = require('path');
 var userServices = require('../Services/userServices');
+const passwordServices = require('../Services/userServices.changepw');
 
 //Defining the storage for images
 const storage = multer.diskStorage({
@@ -84,6 +85,11 @@ router.put('/updateProductsReview/user/:id', function(req,res){
 // delete Review
 router.put('/deleteProductsReview/user/:id', function(req,res){
     userServices.deleteProductsReview(req,res);
+})
+
+// forgot-password
+router.post('/forgot-password/user', function(req,res){
+    passwordServices.sendPasswordLink(req,res);
 })
 
 module.exports = router;
