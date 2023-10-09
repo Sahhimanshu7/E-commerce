@@ -8,9 +8,11 @@
 const express = require("express");
 const dotenv = require("dotenv");
 const mongoose = require('mongoose');
+
 const userController = require('./Controllers/userController');
 const sellerController = require('./Controllers/sellerController');
 const reviewController = require('./Controllers/reviewController');
+const productController = require('./Controllers/productController');
 
 const PORT = process.env.PORT || 8080;
 const app = express();
@@ -42,6 +44,9 @@ app.use('/api/auth/', sellerController);
 
 //Review middleware
 app.use('/api/review/', reviewController);
+
+//Product middleware
+app.use('/api/products/', productController);
 
 app.listen(PORT,() => {
     console.log(`E-commerce site listening on ${PORT}`);

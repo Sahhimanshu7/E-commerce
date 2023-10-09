@@ -11,6 +11,7 @@ const makeProduct = async(req,res) =>{
             categories: req.body.categories,
             reviewComments: req.body.reviewComments,
             reviewStars: req.body.reviewStars,
+            reviewStarTotal: req.body.reviewTotal,
             sellerID: sellerID,
             sellerName: req.body.sellerName,
             totalSales: req.body.totalSales,
@@ -23,6 +24,39 @@ const makeProduct = async(req,res) =>{
         res.status(500).json(error);
     }
 };
+
+// getting the product by id
+const getProduct = async(req,res) =>{
+    const productID = req.params.id;
+    try {
+        const product = await ProductInformation.findById(productID);
+        res.status(200).json(product);
+    } catch (error) {
+        res.status(500).json(error);
+    }
+}
+
+// getting the product by seller
+const getProductBySeller = async(req,res) =>{
+    const sellerName = req.params.sellerName;
+    try {
+        const product = await ProductInformation.find({sellerName:sellerName});
+        res.status(200).json(product);
+    } catch (error) {
+        res.status(500).json(error);
+    }
+}
+
+// getting products by categories
+const getProductByCat = async(req,res) =>{
+    const category = req.params.category;
+    try {
+        const product = await ProductInformation.find({categories:category});
+        res.status(200).json(product);
+    } catch (error) {
+        res.status(500).json(error);
+    }
+}
 
 // editing product name
 const changeProductName = async(req,res) =>{
@@ -107,6 +141,23 @@ const removeProductCategories = async(req,res) =>{
     }
 }
 
+// adding review stars
+const addReview = async(req,res) =>{
+    const productID = req.params.id;
+    const newReview = req.body.review;
+
+    const reviewNumber = req.body.reviewNumber;
+    try {
+        await ProductInformation.findByIdAndUpdate(productID, {
+            reviewStarTotal:newReview,
+            reviewTotal:reviewNumber
+        });
+        res.status("Review Added!");
+    } catch (error) {
+        res.status(500).json(error);
+    }
+}
+
 module.exports = { makeProduct,
                     changeProductName,
                     changeProductCategories,
@@ -114,4 +165,8 @@ module.exports = { makeProduct,
                     changeProductDisc,
                     changeProductMRP,
                     removeProductCategories,
-                    removeProductDisc }
+                    removeProductDisc,
+                    addReview,
+                    getProduct,
+                    getProductBySeller,
+                    getProductByCat }

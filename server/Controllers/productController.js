@@ -42,4 +42,24 @@ router.put('/remove-categories/:id', function(req,res){
     productServices.removeProductCategories(req,res);
 });
 
+// add review
+router.put('add-review/:id', function(req,res){
+    productServices.addReview(req,res);
+});
+
+//get product
+router.get('/get-product/:id', function(req,res){
+    productServices.getProduct(req,res);
+});
+
+// get product by sellerName
+router.get('/get-product/:sellerName', function(req,res){
+    productServices.getProductBySeller(req,res);
+});
+
+//get product by categories
+router.get('get-product/:category', function(req,res){
+    productServices.getProductByCat(req,res);
+});
+
 module.exports = router;

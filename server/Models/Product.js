@@ -25,9 +25,13 @@ const ProductInformationSchema = new mongoose.Schema({
         type: Array,
         default: []
     },
-    reviewStars:{
-        type: Number,
+    reviewStarsTotal:{
+        type:Number,
         default: null
+    },
+    reviewTotal:{
+        type: Number,
+        default: 0
     },
     sellerName:{
         type: String,
