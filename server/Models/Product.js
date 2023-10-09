@@ -5,7 +5,7 @@ const ProductInformationSchema = new mongoose.Schema({
         type: String,
         require: true,
         min: 3,
-        max: 20,
+        max: 60,
     },
     MRP:{
         type: Number,

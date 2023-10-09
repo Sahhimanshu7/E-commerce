@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const multer = require('multer');
 const path = require('path');
-var userServices = require('../Services/userServices');
+const userServices = require('../Services/userServices');
 const passwordServices = require('../Services/userServices.changepw');
 
 //Defining the storage for images
