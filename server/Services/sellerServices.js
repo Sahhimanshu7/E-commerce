@@ -48,4 +48,92 @@ const loginSeller = async(req,res) =>{
     }
 }
 
-module.exports = { registerSeller, loginSeller };
+// updating seller name
+const updateName = async(req,res) =>{
+    const sellerID = req.params.id;
+    const firstName = req.body.firstName;
+    const lastName = req.body.lastName;
+    try {
+        await UserInformation.findByIdAndUpdate(sellerID,{firstName:firstName});
+        await UserInformation.findByIdAndUpdate(sellerID,{lastName:lastName});
+        res.status(200).json("Seller Name updated!");
+    } catch (error) {
+        res.status(500).json(error);
+    }
+}
+
+// update company name
+const updateCompanyName = async(req,res) =>{
+    const sellerID = req.params.id;
+    const companyName = req.body.companyName;
+    try {
+        await UserInformation.findByIdAndUpdate(sellerID,{companyName:companyName});
+        res.status(200).json("Company Name updated!");
+    } catch (error) {
+        res.status(500).json(error);
+    }
+}
+
+// updating products sold list
+const updateProductsBought = async(req,res) =>{
+    const sellerID = req.params.id;
+    const productSoldID = req.body.productBoughtID;
+    try {
+        await UserInformation.findByIdAndUpdate(userID,{$push:{productsBought : productBoughtID}});
+        res.status(200).json(`Product with id : ${productBoughtID} added!`);
+    } catch (error) {
+        res.status(500).json(error);
+    }
+}
+
+// updating products wishlist
+const updateProductsWishlist = async(req,res) =>{
+    const userID = req.params.id;
+    const productWishlistID = req.body.productWishlistID;
+    try {
+        await UserInformation.findByIdAndUpdate(userID,{$push:{productsWishlist: productWishlistID}});
+        res.status(200).json(`Wishlist with id : ${productWishlistID} added!`);
+    } catch (error) {
+        res.status(500).json(error);
+    }
+}
+
+// deleting products wishlist
+const deleteProductsWishlist = async(req,res) =>{
+    const userID = req.params.id;
+    const productWishlistID = req.body.productWishlistID;
+    try {
+        await UserInformation.findByIdAndUpdate(userID,{$pull:{productsWishlist: productWishlistID}});
+        res.status(200).json(`Wishlist with id : ${productWishlistID} removed!`);
+    } catch (error) {
+        res.status(500).json(error);
+    }
+}
+
+// updating pending orders
+const updateProductsPending = async(req,res) =>{
+    const userID = req.params.id;
+    const productPendingID = req.body.productPendingID;
+    try {
+        await UserInformation.findByIdAndUpdate(userID,{$push:{pendingOrders : productPendingID}});
+        res.status(200).json(`Product with id : ${productPendingID} added!`);
+    } catch (error) {
+        res.status(500).json(error);
+    }
+}
+// removing pending orders
+const deletePendingOrders = async(req,res) =>{
+    const userID = req.params.id;
+    const productPendingID = req.body.productPendingID;
+    try {
+        await UserInformation.findByIdAndUpdate(userID,{$pull:{pendingOrders: productPendingID}});
+        res.status(200).json(`Product with id : ${productPendingID} removed!`);
+    } catch (error) {
+        res.status(500).json(error);
+    }
+}
+
+module.exports = { registerSeller, 
+                    loginSeller, 
+                    updateName,
+                    updateCompanyName };
