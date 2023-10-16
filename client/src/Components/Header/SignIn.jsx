@@ -48,7 +48,6 @@ function SignIn(){
             </button> 
         </Link>
     }
-    <img src="E-commerce/server/uploads/profileImages/1696264132640-back.JPG" alt="not found"/>
         </>
     )
 }

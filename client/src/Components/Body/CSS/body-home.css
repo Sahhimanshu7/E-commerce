@@ -1,0 +1,91 @@
+.img img{
+    width: 240px;
+    width: 240px;
+    border: 1px solid black;
+    padding: 0.5px;
+    border-radius: 20px;
+}
+.img{
+    padding: 4px;
+    border-radius: 20px;
+    background: #D9D9D9;
+}
+
+.cards{
+    border-radius: 20px;
+    background: #FFF;
+
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(2px);
+
+    width: 260px;
+    height: 300px;
+    flex-shrink: 0;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    margin: 10px;
+}
+
+.prod-description{
+    margin-top: 10px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;    
+}
+
+.name{
+    color: #41B853;
+    font-size: 28px;
+    padding-left: 5px;
+}
+
+.price{
+    color: #41B853;
+    font-size: 20px;
+    padding-left: 10px;
+}
+.discount{
+    color:red;
+    font-size: 16px;
+    padding-left: 10px;
+}
+
+.body-home{
+    display: flex;
+    flex-wrap: wrap;
+    margin: 20px;
+}
+
+.outer{
+    display: flex;
+    align-items: center;
+}
+.prod-buy{
+    font-size: 12px;
+    padding:8px 15px;
+    border-radius: 20px;
+
+    border: none;
+    background-color: blue;
+    color: aliceblue;
+
+    margin: 10px;
+}
+.add-wishlist{
+    background-color: white;
+    border: none;
+}
+.back-to-top{
+    position: fixed;
+    right:10px;
+    bottom: 10px;
+}
+@media only screen and (max-device-width: 768px) {
+    .body-home{
+        align-items: center;
+        justify-content: center;
+    }
+}

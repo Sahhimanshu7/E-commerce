@@ -2,6 +2,7 @@ import { useState } from 'react';
 import Login from '../Components/SignIn/Login';
 import SignUp from '../Components/SignIn/Signup';
 import '../Components/SignIn/CSS/signIn.css';
+import '../Components/SignIn/CSS/Mobile/signIn.css';
 import { Link } from "react-router-dom";
 
 const SigIn = () => {

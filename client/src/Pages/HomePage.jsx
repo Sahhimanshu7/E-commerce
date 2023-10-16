@@ -7,7 +7,6 @@ const HomePage = () => {
         <div className="main-page">
             <Header />
             <Body />
-            <ProfileUser />
         </div>
     )
 }
