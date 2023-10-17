@@ -1,10 +1,11 @@
 import React from 'react'
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
+import { useNavigate } from "react-router-dom";
 
 export default function SignupSeller() {
     const {register, handleSubmit} = useForm();
-
+    const navigate = useNavigate();
     const onSubmit = (e) =>{
         const firstName = e.firstName;
         const lastName = e.lastName;
@@ -26,6 +27,7 @@ export default function SignupSeller() {
             description: description
         }).then((response) =>{
             console.log(response);
+            navigate(`/sellerDashboard/${response.data._id}`);
         }).catch(e =>{
             console.log(e);
         })

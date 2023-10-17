@@ -41,6 +41,7 @@ app.use('/api/services/user',userController);
 
 //Seller middleware
 app.use('/api/auth/', sellerController);
+app.use('/api/seller/', sellerController);
 
 //Review middleware
 app.use('/api/review/', reviewController);

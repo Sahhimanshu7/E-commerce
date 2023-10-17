@@ -11,5 +11,9 @@ router.post('/signup/seller', function(req,res){
 router.post('/login/seller', function(req,res){
     sellerServices.loginSeller(req,res);
 });
+// get seller information
+router.post('/getSeller', function(req,res){
+    sellerServices.getSeller(req,res);
+});
 
 module.exports = router;

@@ -157,6 +157,17 @@ const deletePendingOrders = async(req,res) =>{
         res.status(500).json(error);
     }
 }
+
+// get seller information by _id
+const getSeller = async(req,res) =>{
+    const sellerID = req.body.sellerID;;
+    try {
+        const seller = await Seller.findOne({_id:sellerID});
+        res.status(200).json(seller);
+    } catch (error) {
+        res.status(500).json(error);
+    }
+}
 module.exports = { registerSeller, 
                     loginSeller, 
                     updateName,
@@ -167,4 +178,5 @@ module.exports = { registerSeller,
                     updateNewOrders,
                     deletenewOrders,
                     updatePendingOrders,
-                    deletePendingOrders };
+                    deletePendingOrders,
+                    getSeller };

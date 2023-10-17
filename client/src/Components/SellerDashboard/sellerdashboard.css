@@ -1,0 +1,34 @@
+.seller-dashboard{
+    display: flex;
+}
+
+.left-side-sd{
+    width: 20vw;
+    background-color: #161B40;
+    height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.left-side-sd button{
+    width: 100%;
+    border: none;
+    margin: 10px;
+    font-size: 24px;
+    background-color: #161B40;
+    border-bottom: 1px solid black;
+    color: aliceblue;
+    padding-bottom: 10px;
+}
+.left-side-sd h1{
+    color: #C1C1C1;
+    margin: 20px;
+    position: relative;
+    left: 15%;
+}
+.right-side-sd{
+    width: 80vw;
+    height: 100vh;
+    background-color: #C1C1C1;
+}
