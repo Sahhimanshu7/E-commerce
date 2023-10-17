@@ -127,3 +127,22 @@
     color: white;
     font-weight: 700;
 }
+
+.form-signup{
+    display: grid;
+    grid-template-columns: 3fr 3fr;
+    width: 100%;
+    margin-bottom: none;
+}
+
+.submit-signup{
+    align-self: center;
+    position: relative;
+    left: 80%;
+    margin-top: 15px;
+}
+/* .desc{
+    width:160px;
+    position: relative;
+    left: 50%;
+} */

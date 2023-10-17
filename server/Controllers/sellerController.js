@@ -1,12 +1,15 @@
 const express =  require('express');
 const router = express.Router();
 
-// import { registerSeller, loginSeller } from '../Services/sellerServices';
+const sellerServices = require('../Services/sellerServices');
 
-// // register new seller
-// router.post('/signup/seller', registerSeller);
-
-// // Login for seller 
-// router.post('/login/seller', loginSeller);
+// register new seller
+router.post('/signup/seller', function(req,res){
+    sellerServices.registerSeller(req,res);
+})
+// Login for seller 
+router.post('/login/seller', function(req,res){
+    sellerServices.loginSeller(req,res);
+});
 
 module.exports = router;
