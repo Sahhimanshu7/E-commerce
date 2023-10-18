@@ -34,14 +34,14 @@ export const About = ({id}) =>{
  
     return(
         <div className="About">
-            <div className="image">
-            <input
-        type="file"
-        onChange={(event) => {
-          setImageUpload(event.target.files[0]);
-        }}
-      />
-      <button onClick={uploadFile}> Upload Image</button>
+            <div className="image-upload">
+                    <input
+                type="file"
+                onChange={(event) => {
+                  setImageUpload(event.target.files[0]);
+                }}
+              />
+              <button onClick={uploadFile}> Upload Image</button>
       
             </div>
         </div>
