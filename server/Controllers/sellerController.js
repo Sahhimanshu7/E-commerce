@@ -16,4 +16,9 @@ router.post('/getSeller', function(req,res){
     sellerServices.getSeller(req,res);
 });
 
+// image upload
+router.put('/uploadProfileImg', function(req,res){
+    sellerServices.uploadProfileImage(req,res);
+})
+
 module.exports = router;

@@ -1,6 +1,7 @@
 const Seller = require("../Models/Sellerinformation");
 const bcrypt = require('bcrypt');
 
+
 // Register new seller
 const registerSeller = async(req,res) =>{
     try {
@@ -168,6 +169,17 @@ const getSeller = async(req,res) =>{
         res.status(500).json(error);
     }
 }
+
+const uploadProfileImage = async(req,res) =>{
+    const sellerID = req.body.sellerID;
+    const url = req.body.profileImage;
+    try {
+        await Seller.findByIdAndUpdate(sellerID,{profileImage:url});
+        res.status(200).json("Image uploaded Successfully");
+    } catch (error) {
+        res.status(500).json(error);
+    }
+}
 module.exports = { registerSeller, 
                     loginSeller, 
                     updateName,
@@ -179,4 +191,5 @@ module.exports = { registerSeller,
                     deletenewOrders,
                     updatePendingOrders,
                     deletePendingOrders,
-                    getSeller };
+                    getSeller,
+                    uploadProfileImage };
