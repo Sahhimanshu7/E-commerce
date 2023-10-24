@@ -15,7 +15,7 @@ const LoginSeller = () =>{
              password : password
          })
          .then((response) => {
-             navigate('/');
+             navigate(`/sellerDashboard/${response.data._id}`);
          }).catch(e => {
              console.log(e);
          });

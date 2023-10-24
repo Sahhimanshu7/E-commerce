@@ -7,6 +7,7 @@ import { About, CreateProduct, NewOrders, PendingOrders, ProductsListed, Product
 
 export default function SellerDashboard({props}) {
     const [option, setOption] = useState('about');
+    const [seller, setSeller] = useState()
 
     const {id} = useParams(); 
 
@@ -15,7 +16,7 @@ export default function SellerDashboard({props}) {
     try {
         await axios.post('/api/seller/getSeller/',{
             sellerID:id
-        }).then(e=>console.log(e))
+        }).then(e => setSeller(e.data))
         .catch(error => console.log(error));
     } catch (error) {
         console.log(error);
@@ -24,7 +25,7 @@ export default function SellerDashboard({props}) {
     getSeller();
     const RenderFunction = () =>{
         if(option === "about"){
-            return <About id={id}/>
+            return <About id={id} sellerProp = {seller}/>
         }else if(option === "newOrders"){
             return <NewOrders />
         }else if(option === "createProduct"){

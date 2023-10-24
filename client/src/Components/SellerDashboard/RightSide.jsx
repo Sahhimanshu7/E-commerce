@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {  useState } from 'react';
+import {  useEffect, useState } from 'react';
 import { v4 } from "uuid";
 import {
     ref,
@@ -8,32 +8,45 @@ import {
   } from "firebase/storage";
 import { storage } from '../../firebase';
 
-  
-
-export const About = ({id}) =>{
+export const About = ({id, sellerProp}) =>{
     const [imageUpload, setImageUpload] = useState(null);
-    const [imageUrls, setImageUrls] = useState(null);
+    const [imageUrls, setImageUrls] = useState();
+    const [imageEdit, showImageEdit] = useState(false);
+    
+    console.log(sellerProp);
+    
+    useEffect(()=>{
+      if(sellerProp){
+        setImageUrls(sellerProp.profileImage);
+      }
+    },[])
+    
 
-    // const imagesListRef = ref(storage, "images/");
-    const uploadFile = async() => {
+    const uploadFile = () => {
     if (imageUpload == null) return;
     const imageRef = ref(storage, `images/${imageUpload.name + v4()}`);
     uploadBytes(imageRef, imageUpload).then((snapshot) => {
       getDownloadURL(snapshot.ref).then((url) => {
         setImageUrls(url);
+        axios.put('/api/seller/uploadProfileImg/',{
+          sellerID:id,
+          profileImage: url
+        }).then((res) => console.log(res))
+        .catch((error)=>{ console.log(error)});
       });
     });
-    await axios.put('/api/seller/uploadProfileImg/',{
-      sellerID:id,
-      profileImage: imageUrls
-    }).then((res) => console.log(res))
-    .catch((error)=>{ console.log(error)});
   };
 
   
  
     return(
         <div className="About">
+            <div className='image-view'>
+              <div className='profile-image'>
+                <img src={imageUrls} alt = ' ' />
+              </div>
+              <button className='change-profile-image'>Edit</button>
+            </div>
             <div className="image-upload">
                     <input
                 type="file"

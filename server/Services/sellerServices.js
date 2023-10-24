@@ -5,9 +5,7 @@ const bcrypt = require('bcrypt');
 // Register new seller
 const registerSeller = async(req,res) =>{
     try {
-        
         const salt = await bcrypt.genSalt(10);
-        console.log(req.body.password);
         const hashedPassword = await bcrypt.hash(req.body.password,salt);
         const newSeller = new Seller({
             firstName:req.body.firstName,
@@ -21,12 +19,13 @@ const registerSeller = async(req,res) =>{
             productsListed:req.body.productsListed,
             productsSold:req.body.productsSold,
             newOrders:req.body.newOrders,
-            pendingOrders:req.body.pendingOrders
+            pendingOrders:req.body.pendingOrders,
+            profileImage:req.body.profileImage
         });
-
         const seller = await newSeller.save();
         res.status(200).json(seller);
     } catch (error) {
+        console.log(error);
         res.status(500).json(error);
     }
 }
@@ -170,6 +169,7 @@ const getSeller = async(req,res) =>{
     }
 }
 
+// upload profile image
 const uploadProfileImage = async(req,res) =>{
     const sellerID = req.body.sellerID;
     const url = req.body.profileImage;
@@ -180,6 +180,7 @@ const uploadProfileImage = async(req,res) =>{
         res.status(500).json(error);
     }
 }
+
 module.exports = { registerSeller, 
                     loginSeller, 
                     updateName,
@@ -192,4 +193,4 @@ module.exports = { registerSeller,
                     updatePendingOrders,
                     deletePendingOrders,
                     getSeller,
-                    uploadProfileImage };
+                    uploadProfileImage};

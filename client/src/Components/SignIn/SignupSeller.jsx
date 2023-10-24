@@ -10,7 +10,7 @@ export default function SignupSeller() {
         const firstName = e.firstName;
         const lastName = e.lastName;
         const companyName = e.companyName;
-        const sellerID = e.sellerID;
+        const userID = e.sellerID;
         const password = e.password;
         const companyEmail = e.companyEmail;
         const country = e.country;
@@ -21,7 +21,7 @@ export default function SignupSeller() {
             lastName:lastName,
             companyName: companyName,
             companyEmail:companyEmail,
-            sellerID: sellerID,
+            userID: userID,
             password: password,
             country: country,
             description: description
