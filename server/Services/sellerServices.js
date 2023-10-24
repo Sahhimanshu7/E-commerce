@@ -33,7 +33,7 @@ const registerSeller = async(req,res) =>{
 // Login a seller
 const loginSeller = async(req,res) =>{
     try {
-        const seller = Seller.findOne({userID:req.body.userID});
+        const seller = await Seller.findOne({userID:req.body.userID});
         if (seller) {
             const validPassword = await bcrypt.compare(req.body.password, seller.password);
             if(validPassword){
