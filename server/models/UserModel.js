@@ -9,7 +9,8 @@ const UserModelSchema = mongoose.Schema(
         productsBought: Array,
         productsSold: Array,
         productsBuyInProgress: Array,
-        productsSellInProgress: Array
+        productsSellInProgress: Array,
+        cart: Array
     },
     {timestamps: true}
 );

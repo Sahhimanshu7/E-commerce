@@ -10,7 +10,7 @@ const ProductModelSchema = mongoose.Schema(
         description: String,
         category: String,
         numberOfRatings: Number,
-        avgRating: Number,
+        totalRating: Number,
         ageGroup: Array,
         country: String,
         createdBy: String
