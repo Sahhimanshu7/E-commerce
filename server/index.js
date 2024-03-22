@@ -1,11 +1,13 @@
 import express, { urlencoded } from "express";
 import cors from "cors";
 import dotenv from "dotenv";
+import bodyParser from "express";
 
 import "./config/mongo.js";
+import { rateLimiterUsingThirdParty } from "./middleware/rateLimit.js";
+import fourOhFour from "./middleware/fourOhFour.js";
 
 import userRoutes from './routes/userRoutes.js';
-import bodyParser from "express";
 import productRoutes from "./routes/productRoutes.js";
 
 const app = express();
@@ -15,6 +17,8 @@ dotenv.config();
 app.use(cors());
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+app.use(rateLimiterUsingThirdParty);
 
 const PORT = process.env.PORT || 8080;
 
@@ -26,3 +30,5 @@ app.use('/api/products/', productRoutes);
 app.listen(PORT, () =>{
     console.log(`Server is listening on ${PORT}`);
 });
+
+app.use(fourOhFour);

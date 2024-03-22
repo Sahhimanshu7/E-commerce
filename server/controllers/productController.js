@@ -1,3 +1,5 @@
+// Create, Read, Update, and Delete Product
+
 import ProductModel from "../models/ProductModel.js";
 
 export const createProduct = async (req, res) => {
@@ -21,8 +23,46 @@ export const createProduct = async (req, res) => {
     }
 }
 
-export const deleteProduct = async (req, res) => {
+export const getProduct = async (req, res) => {
+    try {
+        const product = await ProductModel.findById(req.params._id);
+        if (product) {
+            res.status(200).json(product);
+        } else {
+            res.status(400).json("Product not found!");
+        }
+    } catch (error) {
+        res.status(500).json("Error finding product: " + error);
+    }
+}
 
+export const updateProduct = async (req, res) => {
+    try {
+        const product = await ProductModel.findById(req.body._id);
+        if (product) {
+            const updatedProduct = await ProductModel.findByIdAndUpdate(
+                req.body._id,
+                {
+                productName: req.body.productName,
+                brand: req.body.brand,
+                originalPrice: req.body.originalPrice,
+                finalPrice: req.body.finalPrice,
+                sellerName: req.body.sellerName,
+                description: req.body.description,
+                category: req.body.category,
+                ageGroup: req.body.ageGroup,
+                country: req.body.country,
+            });
+            res.status(200).json(updatedProduct);
+        } else {
+            res.status(400).json("Product not found!");
+        }
+    } catch (error) {
+        res.status(500).json("Error updating the product: " + error);
+    }
+}
+
+export const deleteProduct = async (req, res) => {
     try {
         const product = await ProductModel.findById(req.body._id);
         if (product) {
