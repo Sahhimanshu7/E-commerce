@@ -17,7 +17,8 @@ export const createUser = async (req, res) => {
                 name: req.body.name,
                 password: hashedPassword,
                 email: req.body.email,
-                country: req.body.country
+                country: req.body.country,
+                yearOfBirth: req.body.yearOfBirth
             });
             const user = newUser.save();
             res.status(200).json(user);

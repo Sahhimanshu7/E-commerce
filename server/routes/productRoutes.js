@@ -9,7 +9,8 @@ import {
     getProduct,
     updateProduct,
     uploadImage,
-    upload
+    upload,
+    imageShow
 } from "../controllers/productController.js";
 
 router.route("/create-product")
@@ -26,5 +27,8 @@ router.route("/delete-product")
 
 router.route('/upload-image')
     .put(upload.single('photo'), uploadImage);
+
+router.route('/show-image/:filename')
+    .get(imageShow);
 
 export default router;

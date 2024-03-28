@@ -9,6 +9,7 @@ import fourOhFour from "./middleware/fourOhFour.js";
 
 import userRoutes from './routes/userRoutes.js';
 import productRoutes from "./routes/productRoutes.js";
+import productLoaderRoutes from "./routes/productsLoaderRoute.js";
 
 const app = express();
 
@@ -26,6 +27,8 @@ const PORT = process.env.PORT || 8080;
 app.use('/api/auth/user', userRoutes);
 
 app.use('/api/products/', productRoutes);
+
+app.use('/api/products/', productLoaderRoutes);
 
 app.listen(PORT, () =>{
     console.log(`Server is listening on ${PORT}`);

@@ -130,5 +130,10 @@ export const uploadImage = async (req, res) => {
 }
 
 export const imageShow = async (req, res) => {
-
+    const file = `./images/${req.params.filename}`;
+    if (file) {
+        res.sendFile(file,{root:"."});
+    } else {
+        res.status(400).json("Image not found!");
+    }
 }
