@@ -13,7 +13,8 @@ const ProductModelSchema = mongoose.Schema(
         totalRating: Number,
         ageGroup: Array,
         country: String,
-        createdBy: String
+        createdBy: String,
+        photoURL: String
     },
     {timestamps: true}
 );

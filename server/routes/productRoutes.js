@@ -3,7 +3,14 @@
 import express from "express";
 const router = express.Router();
 
-import { createProduct, deleteProduct, getProduct, updateProduct } from "../controllers/productController.js";
+import {
+    createProduct,
+    deleteProduct,
+    getProduct,
+    updateProduct,
+    uploadImage,
+    upload
+} from "../controllers/productController.js";
 
 router.route("/create-product")
     .post(createProduct);
@@ -16,5 +23,8 @@ router.route("/update-product")
 
 router.route("/delete-product")
     .post(deleteProduct);
+
+router.route('/upload-image')
+    .put(upload.single('photo'), uploadImage);
 
 export default router;

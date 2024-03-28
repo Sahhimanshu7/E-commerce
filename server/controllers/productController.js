@@ -1,4 +1,9 @@
 // Create, Read, Update, and Delete Product
+// Uploading one Image
+
+import multer from 'multer';
+import { v4 as uuidv4 } from 'uuid';
+import * as path from "path";
 
 import ProductModel from "../models/ProductModel.js";
 
@@ -82,4 +87,48 @@ export const deleteProduct = async (req, res) => {
     } catch (error) {
         res.status(500).json("Error deleting the product! " + error);
     }
+}
+
+// Image upload and storage
+
+const storage = multer.diskStorage({
+    destination: function(req, file, cb) {
+        cb(null, 'images');
+    },
+    filename: function(req, file, cb) {
+        cb(null, uuidv4() + '-' + Date.now() + path.extname(file.originalname));
+    }
+});
+
+const fileFilter = (req, file, cb) => {
+    const allowedFileTypes = ['image/jpeg', 'image/jpg', 'image/png'];
+    if (allowedFileTypes.includes(file.mimetype)) {
+        cb(null, true);
+    } else {
+        cb(null, false);
+    }
+}
+
+export const upload = multer({ storage, fileFilter });
+export const uploadImage = async (req, res) => {
+    const photo = req.file.filename;
+    const _id = req.body._id;
+
+    console.log(photo);
+
+    try {
+        const product = await ProductModel.findById(_id);
+        if (product) {
+            await ProductModel.findByIdAndUpdate(_id, { photoURL: photo });
+            res.status(201).json("Image uploaded to the product");
+        } else {
+            res.status(401).json("Product not Found!");
+        }
+    } catch(error) {
+        res.status(500).json("Unable to upload Image");
+    }
+}
+
+export const imageShow = async (req, res) => {
+
 }
