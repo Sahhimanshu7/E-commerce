@@ -8,6 +8,8 @@ import * as path from "path";
 import ProductModel from "../models/ProductModel.js";
 
 export const createProduct = async (req, res) => {
+    const country = req.body.country;
+    const c = country.toLowerCase();
     try {
         const newProduct = new ProductModel({
             productName: req.body.productName,
@@ -18,7 +20,7 @@ export const createProduct = async (req, res) => {
             description: req.body.description,
             category: req.body.category,
             ageGroup: req.body.ageGroup,
-            country: req.body.country,
+            country: c,
             createdBy: req.body.createdBy
         });
         const product = await newProduct.save();

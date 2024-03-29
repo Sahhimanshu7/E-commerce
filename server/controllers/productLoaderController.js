@@ -97,3 +97,23 @@ export const loadHomePage = async (req, res) => {
     res.status(500).json("Server Error Loading homepage" + error);
   }
 }
+
+// Give option to sort by price
+export const findProductByName = async (req, res) => {
+  const name = req.params.name;
+
+  // define pipeline
+  const agg = [
+      {$search: {index: "productmodels", autocomplete: {query: name, path: "productName", fuzzy: {}}}},
+      {$limit: 20}
+  ];
+
+  const result = await ProductModel.aggregate(agg);
+  res.json(result);
+};
+
+// Give option to sort by price
+export const findProductById = async (req, res) => {};
+
+// Give option to sort by price
+export const findProductsByCategory = async (req, res) => {};
