@@ -113,7 +113,16 @@ export const findProductByName = async (req, res) => {
 };
 
 // Give option to sort by price
-export const findProductById = async (req, res) => {};
+export const findProductById = async (req, res) => {
+  const id = req.params.id;
+
+  try {
+    const product = await ProductModel.findById(id);
+    res.status(200).json(product);
+  } catch (error) {
+    res.status(500).json("Product Not Found");
+  }
+};
 
 // Give option to sort by price
 export const findProductsByCategory = async (req, res) => {};
