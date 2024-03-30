@@ -3,3 +3,6 @@
 /server/package-lock.json
 /server/.env
 /server/images
+
+# client
+/client/package-lock.json
