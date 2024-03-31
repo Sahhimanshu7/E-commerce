@@ -1,5 +1,6 @@
 import UserModel from "../models/UserModel.js";
 import bcryptjs from 'bcryptjs';
+
 export const createUser = async (req, res) => {
     const userCheck = await UserModel.findOne(
         {

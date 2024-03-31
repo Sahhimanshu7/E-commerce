@@ -1,16 +1,16 @@
 import { Navigate } from "react-router-dom"
 import { useAuth } from "../context/AuthContext"
 
-const Home = () => {
+const Profile = () => {
   const { currentUser } = useAuth();
 
   if (!currentUser) {
-    return <Navigate to="/login" />
+    return <Navigate to="/login" />;
   }
-
+  
   return (
-    <div>Home</div>
+    <div>Profile</div>
   )
 }
 
-export default Home
+export default Profile

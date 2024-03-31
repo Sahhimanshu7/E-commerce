@@ -19,11 +19,11 @@ const Navbar = () => {
           <HomeIcon className='text-white'/>
           <p className='text-[16px] font-mono text-white'>Home</p>
         </Link>
-        <Link to="#" className='flex'>
+        <Link to="/cart" className='flex'>
           <ShoppingCartIcon className='text-white'/>
           <p className='text-[16px] font-mono text-white'>Cart</p>
         </Link>
-        <Link to="#" className='flex'>
+        <Link to="/profile" className='flex'>
           <ManageAccountsIcon className='text-white'/>
           <p className='text-[16px] font-mono text-white'>Account</p>
         </Link>
@@ -40,7 +40,7 @@ const Navbar = () => {
       </div>
 }
       {mobileNav && 
-      <div className='lg:hidden flex-row absolute ring-6 p-10 bg-slate-900 bg-opacity-85 w-full h-full top-0 left-0 justify-center'>
+      <div className='lg:hidden flex-row absolute ring-6 p-10 bg-slate-900 bg-opacity-85 w-full h-full top-0 left-0 justify-center z-10'>
         <button
           onClick={(e) => {
             setMobileNav(false);
@@ -48,15 +48,27 @@ const Navbar = () => {
         >
           <CloseIcon className='text-white absolute top-3 right-8' sx={{ fontSize: 35 }}/>
         </button> 
-        <Link to="/" className='flex justify-center w-full my-4 mt-20'>
+        <Link to="/" className='flex justify-center w-full my-4 mt-20'
+        onClick={(e) => {
+          setMobileNav(false);
+        }}
+        >
           <HomeIcon className='text-white' sx={{ fontSize: 35 }}/>
           <p className='text-[25px] font-mono text-white mx-4'>Home</p>
         </Link>
-        <Link to="#" className='flex justify-center w-full my-4'>
+        <Link to="/cart" className='flex justify-center w-full my-4'
+        onClick={(e) => {
+          setMobileNav(false);
+        }}
+        >
           <ShoppingCartIcon className='text-white' sx={{ fontSize: 35 }}/>
           <p className='text-[25px] font-mono text-white mx-4'>Cart</p>
         </Link>
-        <Link to="#" className='flex justify-center w-full my-4'>
+        <Link to="/profile" className='flex justify-center w-full my-4'
+        onClick={(e) => {
+          setMobileNav(false);
+        }}
+        >
           <ManageAccountsIcon className='text-white' sx={{ fontSize: 35 }}/>
           <p className='text-[25px] font-mono text-white mx-4'>Account</p>
         </Link>
