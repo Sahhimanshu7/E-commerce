@@ -7,10 +7,11 @@ export const createUser = async (req, res) => {
             email: req.body.email
         }
     );
-    if (userCheck) {
-        res.status(406).json("Email already in use!");
-    }
+    
     try {
+        if (userCheck) {
+            throw new Error("Email Already in Use!");
+        }
         const salt = await bcryptjs.genSalt(10);
         const hashedPassword = await bcryptjs.hash(req.body.password, salt);
         try {
@@ -18,7 +19,7 @@ export const createUser = async (req, res) => {
                 name: req.body.name,
                 password: hashedPassword,
                 email: req.body.email,
-                country: req.body.country.toLowercase(),
+                country: req.body.country,
                 yearOfBirth: req.body.yearOfBirth
             });
             const user = newUser.save();
@@ -26,17 +27,19 @@ export const createUser = async (req, res) => {
         } catch (error) {
             throw new Error("Error with creating new user: " + error);
         }
-        console.log("Hello2");
     } catch (error) {
-        res.status(500).json("Error: " + error);
+        res.status(500).json(error);
     }
 }
 
 export const loginUser = async (req, res) => {
     try {
         const user = await UserModel.findOne(
-            {email: req.body.email}
+            {
+                email: req.body.email
+            }
         );
+    
         if (user) {
             const validPassword = await bcryptjs.compare(req.body.password, user.password);
             if(validPassword) {

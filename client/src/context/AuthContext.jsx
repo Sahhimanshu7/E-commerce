@@ -10,6 +10,8 @@ export function AuthProvider({ children }) {
   const [currentUser, setCurrentUser] = useState();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+
+  const PORT = 'http://localhost:8080';
   
   const value = {
     currentUser,
@@ -17,7 +19,8 @@ export function AuthProvider({ children }) {
     loading,
     setLoading,
     error,
-    setError
+    setError,
+    PORT
   };
 
   return (
