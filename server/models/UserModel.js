@@ -7,6 +7,7 @@ const UserModelSchema = mongoose.Schema(
         email: String,
         yearOfBirth: Number,
         password: String,
+        productsOnline: Array,
         productsBought: Array,
         productsSold: Array,
         productsBuyInProgress: Array,
