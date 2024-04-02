@@ -127,7 +127,7 @@ export const uploadImage = async (req, res) => {
             res.status(401).json("Product not Found!");
         }
     } catch(error) {
-        res.status(500).json("Unable to upload Image");
+        res.status(500).json("Unable to upload Image" + error);
     }
 }
 

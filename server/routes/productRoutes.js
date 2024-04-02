@@ -26,7 +26,7 @@ router.route("/delete-product")
     .post(deleteProduct);
 
 router.route('/upload-image')
-    .put(upload.single('photo'), uploadImage);
+    .put(upload.single('image'), uploadImage);
 
 router.route('/show-image/:filename')
     .get(imageShow);

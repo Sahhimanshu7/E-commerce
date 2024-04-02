@@ -13,7 +13,7 @@ const createProduct = () => {
     return <Navigate to="/" />
   }
 
-  const [selectedImage, setSelectedImage] = useState(null);
+  const [selectedImage, setSelectedImage] = useState();
   const [productName, setproductName] = useState("");
   const [brand, setbrand] = useState("");
   const [originalPrice, setoriginalPrice] = useState();
@@ -55,28 +55,37 @@ const createProduct = () => {
       ageGroupArray.push(elem.value);
     });
 
-    const productUpload = await axios.post(`${PORT}/api/products/create-product`, {
-      productName: productName,
-      brand: brand,
-      originalPrice: originalPrice,
-      finalPrice: finalPrice,
-      sellerName: sellerName,
-      description: description,
-      category: category,
-      ageGroup: ageGroupArray,
-      country: country,
-      createdBy: createdBy
-    });
+    try {
+      const productUpload = await axios.post(`${PORT}/api/products/create-product`, {
+        productName: productName,
+        brand: brand,
+        originalPrice: originalPrice,
+        finalPrice: finalPrice,
+        sellerName: sellerName,
+        description: description,
+        category: category,
+        ageGroup: ageGroupArray,
+        country: country,
+        createdBy: createdBy
+      });
+      if (selectedImage) {
+        await imageUpload(productUpload);
+      }
+      
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
-    console.log(productUpload);
+  const imageUpload = async (productUpload) => {
+    const contentType = {
+      headers: { "content-type": "multipart/form-data" }
+    };
     const imageUpload = await axios.put(`${PORT}/api/products/upload-image`, {
-      photo: selectedImage,
+      image: selectedImage,
       _id: productUpload.data._id
-    })
-
-    console.log(imageUpload);
-
-    return <Navigate to='/profile' />
+    }, 
+    contentType)
   }
 
   const animatedComponents = makeAnimated();
@@ -97,6 +106,7 @@ const createProduct = () => {
                   />
                   <img
                     alt="not found"
+                    accepts="image/*"
                     width={"250px"}
                     src={URL.createObjectURL(selectedImage)}
                     className="rounded-lg"
