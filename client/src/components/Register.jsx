@@ -15,9 +15,11 @@ const Register = () => {
   const [name, setName] = useState("");
   const [country, setCountry] = useState("");
   const [yearOfBirth, setYearOfBirth] = useState();
+  const [error, setError] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setError(false);
     try {
       const user = await axios.post(`${PORT}/api/auth/user/create-user/`, {
       name: name,
@@ -31,12 +33,29 @@ const Register = () => {
     return window.location.replace('/login');
     } catch (error) {
       console.log(error);
+      setError(true);
+
     }
     
   }
 
   return (
     <section className='w-[100vw] h-[85vh] lg:h-[95vh] flex-row overflow-hidden'>
+      <div>
+        {error && (
+          <div className='rounded-lg bg-red-400'>
+            <p className='text-center text-white'>Couldn't signup! Try Again</p>
+          </div>
+        )}
+      </div>
+      <div>
+        {success && (
+          <div className='rounded-lg bg-green-400'>
+            <p className='text-center text-white'>Product Added!</p>
+            <Link to='/profile'>Done</Link>
+          </div>
+        )}
+      </div>
       <div className='relative lg:top-[10vh] top-[5vh] lg:left-[30vw] left-[20vw] border-4 ring-slate-950 lg:w-[30vw] w-[60vw] p-4 rounded-lg shadow'>
         <div>
           <h1 className='text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl'>

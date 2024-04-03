@@ -12,9 +12,11 @@ const Login = () => {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setError(false);
     try {
       const user = await axios.post(`${PORT}/api/auth/user/login-user`, {
         email: email,
@@ -24,12 +26,19 @@ const Login = () => {
       return <Navigate to='/' />
     } catch (error) {
       console.log(error);
+      setError(true);
     }
-    
   }
 
   return (
     <section className='w-[100vw] h-[85vh] lg:h-[95vh] flex-row overflow-hidden'>
+      <div>
+        {error && (
+          <div className='rounded-lg md:w-[500px] bg-red-400'>
+            <p className='text-center text-white'>Couldn't login Try Again</p>
+          </div>
+        )}
+      </div>
       <div className='relative lg:top-[25vh] top-[20vh] lg:left-[30vw] left-[20vw] border-4 ring-slate-950 lg:w-[30vw] w-[60vw] p-4 rounded-lg shadow'>
         <div>
           <h1 className='text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl'>

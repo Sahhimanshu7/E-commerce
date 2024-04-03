@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Navigate } from 'react-router-dom'
+import { Link, Navigate } from 'react-router-dom'
 import { useAuth } from '../../context/AuthContext'
 import CloseIcon from '@mui/icons-material/Close';
 import axios from "axios";
@@ -74,6 +74,7 @@ const createProduct = () => {
       
     } catch (error) {
       console.log(error);
+      Navigate('/profile');
     }
   }
 
@@ -81,7 +82,7 @@ const createProduct = () => {
     const contentType = {
       headers: { "content-type": "multipart/form-data" }
     };
-    const imageUpload = await axios.put(`${PORT}/api/products/upload-image`, {
+    await axios.put(`${PORT}/api/products/upload-image`, {
       image: selectedImage,
       _id: productUpload.data._id
     }, 
@@ -174,11 +175,12 @@ const createProduct = () => {
               />
             </div>
             <div>
-              <p className="block mb-2 text-sm font-medium text-gray-900">Category</p>
+              <p className="block mb-2 text-sm font-medium text-gray-900 ">Category</p>
               <Select 
                 required={true}
                 options={catOptions} 
                 onChange={e => setcategory(e.value)}
+                className='md:w-[600px]'
               />
             </div>
             <div>
@@ -188,7 +190,10 @@ const createProduct = () => {
           </form>
       </div>
       <div>
-        <button className="md:relative left-[20vw] w-[90vw] md:w-[600px] text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Cancel</button>
+        <Link to='/profile'>
+        <button
+        className="md:relative left-[20vw] w-[90vw] md:w-[600px] text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Cancel</button>
+        </Link>
       </div>
     </section>
   )
