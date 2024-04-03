@@ -54,3 +54,18 @@ export const loginUser = async (req, res) => {
         res.status(500).json("Login error: " + error);
     }
 }
+
+export const addProductOnline = async (req, res) => {
+    const productId = req.body.productId;
+    const userId = req.body.userId;
+
+    // Add the productId to the productsOnline of the UserModel with 'userId'
+    try {
+        await UserModel.findByIDAndUpdate(userId, { $push: {productsOnline: productId }}).then(e => console.log(e));
+        res.status(200);
+    } catch (error) {
+        console.log(error);
+        res.status(500);
+    }
+    
+}
