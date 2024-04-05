@@ -61,11 +61,81 @@ export const addProductOnline = async (req, res) => {
 
     // Add the productId to the productsOnline of the UserModel with 'userId'
     try {
-        await UserModel.findByIDAndUpdate(userId, { $push: {productsOnline: productId }}).then(e => console.log(e));
-        res.status(200);
+        await UserModel.findOneAndUpdate({ _id: userId }, { $push: {productsOnline: productId }});
+        res.status(200).json("Product Added To Profile");
     } catch (error) {
         console.log(error);
-        res.status(500);
+        res.status(500).json(error);
     }
     
+}
+
+export const productsBought = async (req, res) => {
+    const productId = req.body.productId;
+    const userId = req.body.userId;
+
+    // Add the productId to the productsOnline of the UserModel with 'userId'
+    try {
+        await UserModel.findOneAndUpdate({ _id: userId }, { $push: {productsBought: productId }});
+        res.status(200).json("Product Added To Boughtlist");
+    } catch (error) {
+        console.log(error);
+        res.status(500).json(error);
+    }
+}
+
+export const productsSold = async (req, res) => {
+    const productId = req.body.productId;
+    const userId = req.body.userId;
+
+    // Add the productId to the productsOnline of the UserModel with 'userId'
+    try {
+        await UserModel.findOneAndUpdate({ _id: userId }, { $push: {productsSold: productId }});
+        res.status(200).json("Product Added To Soldlist");
+    } catch (error) {
+        console.log(error);
+        res.status(500).json(error);
+    }
+}
+
+export const productsBuyInProgress = async (req, res) => {
+    const productId = req.body.productId;
+    const userId = req.body.userId;
+
+    // Add the productId to the productsOnline of the UserModel with 'userId'
+    try {
+        await UserModel.findOneAndUpdate({ _id: userId }, { $push: {productsBuyInProgress: productId }});
+        res.status(200).json("Product Added To Buyingtlist");
+    } catch (error) {
+        console.log(error);
+        res.status(500).json(error);
+    }
+}
+
+export const productsSellInProgress = async (req, res) => {
+    const productId = req.body.productId;
+    const userId = req.body.userId;
+
+    // Add the productId to the productsOnline of the UserModel with 'userId'
+    try {
+        await UserModel.findOneAndUpdate({ _id: userId }, { $push: {productsSellInProgress: productId }});
+        res.status(200).json("Product Added To Sellinglist");
+    } catch (error) {
+        console.log(error);
+        res.status(500).json(error);
+    }
+}
+
+export const Cart = async (req, res) => {
+    const productId = req.body.productId;
+    const userId = req.body.userId;
+
+    // Add the productId to the productsOnline of the UserModel with 'userId'
+    try {
+        await UserModel.findOneAndUpdate({ _id: userId }, { $push: {cart: productId }});
+        res.status(200).json("Product Added To Cart");
+    } catch (error) {
+        console.log(error);
+        res.status(500).json(error);
+    }
 }
