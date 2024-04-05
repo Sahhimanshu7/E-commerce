@@ -126,7 +126,7 @@ export const productsSellInProgress = async (req, res) => {
     }
 }
 
-export const Cart = async (req, res) => {
+export const cart = async (req, res) => {
     const productId = req.body.productId;
     const userId = req.body.userId;
 
