@@ -19,7 +19,7 @@ app.use(cors());
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.use(rateLimiterUsingThirdParty);
+// app.use(rateLimiterUsingThirdParty);
 
 const PORT = process.env.PORT || 8080;
 
